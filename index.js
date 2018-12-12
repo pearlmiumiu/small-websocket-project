@@ -30,5 +30,14 @@ io.on('connection', function(socket){
 		io.sockets.emit('chat', data) 
 
 	})
+ 	//data is the username of the handle
+	socket.on('typing', function(data){
+		//individual socket, emit to every single client, not the orginal one
+		//
+		socket.broadcast.emit('typing', data)
+
+	})
+
+
 })
 

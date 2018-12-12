@@ -10,7 +10,8 @@ var socket= io.connect('http://localhost:4000');
 var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),
-      output = document.getElementById('output');
+      output = document.getElementById('output'),
+      feedback=document.getElementById('feedback');
 
 //emit evvent
 
@@ -21,8 +22,27 @@ btn.addEventListener('click', function(){
 	})
 })
 
+//emit typing event to server
+//tell server someone is typing
+// handle value is the name of user typing
+
+message.addEventListener('keypress', function(){
+	socket.emit('typing', handle.value);
+})
+
+
+
 //listen for evnets
 //data is from the server side, 
+//we listen to chat event after click 'send', we clear the feedback broadcasting who is sending
 socket.on('chat', function(data){
-	output.innerHTML+='<p><strong>'+data.handle+ ';</strong>'+data.message+'</p>';
+	feedback.innerHTML=''
+	output.innerHTML+='<p><strong>'+data.handle+ ': </strong>'+data.message+'</p>';
+})
+
+//data is the user hanler, we output it to the browser.
+// 
+socket.on('typing', function(data){
+
+	feedback.innerHTML='<p><em>'+data+ ' is typing a message ... </em></p>';
 })
