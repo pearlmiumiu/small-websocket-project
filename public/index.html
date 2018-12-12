@@ -1,12 +1,26 @@
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Mini Chat Room</title>
-	<link href='/style.css' rel='stylesheet'/>
+	<link href="/style.css" rel='stylesheet'/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 </head>
-<body>
+    <body>
+ 		<div id="mini-chat">
+            <h2>Mario Chat</h2>
+            <div id="chat-window">
+                <div id="output"></div>
+            </div>
+            <input id="handle" type="text" placeholder="Handle" />
+            <input id="message" type="text" placeholder="Message" />
+            <button id="send">Send</button>
+        </div>
 
-	<h1> Don't you wanna chat with me?</h1>
+	
+   </body>
+<script src='/chat.js'></script>
 
-</body>
 </html>
